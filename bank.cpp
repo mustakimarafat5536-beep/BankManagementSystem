@@ -140,8 +140,58 @@ accounts[i]->deposit(amount);
     }
 }
 
+/ WITHDRAW
+void Bank::withdrawMoney() {
 
+    int accNo;
+    double amount;
 
+    bool found = false;
+
+    cout << "Enter Account Number: ";
+    cin >> accNo;
+
+    for(int i = 0; i < accounts.size(); i++) {
+
+        if(accounts[i]->getAccountNumber() == accNo) {
+
+            while(true) {
+
+                cout << "Enter Amount: ";
+
+                if(cin >> amount && amount > 0) {
+
+                    break;
+                }
+
+                cin.clear();
+                cin.ignore(1000, '\n');
+
+                cout << "Invalid Amount!\n";
+            }
+
+            try {
+
+                accounts[i]->withdraw(amount);
+
+                cout << "Withdraw Successful!\n";
+            }
+
+            catch(const char* message) {
+
+                cout << message << endl;
+            }
+found = true;
+
+            break;
+        }
+    }
+
+    if(found == false) {
+
+        cout << "Account Not Found!\n";
+    }
+}
 
 // SAVE FILE
 void Bank::saveToFile() {

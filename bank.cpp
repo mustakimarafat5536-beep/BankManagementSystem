@@ -169,5 +169,12 @@ void Bank::saveToFile() {
 
     file.close();
 
+        // Load file
+        void Bank:: loadFromFile() {
+                ifstream file("data/accounts.txt);
+                if (!file) {
+                cout << "No saved Data Found\n";
+                return; }
+
     cout << "Data Saved Successfully!\n";
 }
